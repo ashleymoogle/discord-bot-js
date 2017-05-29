@@ -1,7 +1,9 @@
-import Discord from 'discord.js'
+import Discord from "discord.js"
+import config from "config"
+
 const client = new Discord.Client();
 
-client.login('bot Token here');
+client.login(config.botToken);
 
 client.on('ready', () => {
     console.log('I am ready!');
