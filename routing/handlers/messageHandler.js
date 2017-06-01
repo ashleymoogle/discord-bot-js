@@ -1,5 +1,5 @@
 import PingController from '../../controllers/PingController'
-import client, {guild, activityChannel} from '../../client'
+import client, {activityChannel} from '../../client'
 import {Eddie} from "../../data/index"
 import config from "../../config"
 
