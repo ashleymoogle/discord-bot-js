@@ -3,5 +3,10 @@ export default {
     guildId: "309063913092153344",
     channelActivityId: "319067537813929986",
     prefix:":",
-    logBot: true
+    locale:'en',
+    configPath:'./config.js',
+    physicalLogs:false,
+    logsPath:'./logs/',
+    logBot: true,
+    debug:true,
 }

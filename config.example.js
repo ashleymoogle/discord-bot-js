@@ -3,5 +3,10 @@ export default {
     guildId: "Your guild Id",
     channelActivityId: "Id of the channel you want to report in",
     prefix:":",
-    logBot: true
+    locale:'en',
+    configPath:'./config.js',
+    physicalLogs:false,
+    logsPath:'./logs/',
+    logBot: true,
+    debug:false,
 }
