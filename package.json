@@ -3,9 +3,11 @@
     "start": "babel-node bot.js "
   },
   "dependencies": {
+    "babel-plugin-system-import-transformer": "^3.1.0",
     "bufferutil": "^3.0.0",
     "discord.js": "^11.1.0",
     "erlpack": "^0.1.2",
+    "fs-extra": "^3.0.1",
     "libsodium": "^0.5.1",
     "moment": "^2.18.1",
     "node-opus": "^0.2.6",
