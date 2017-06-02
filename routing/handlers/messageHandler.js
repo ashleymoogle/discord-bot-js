@@ -2,28 +2,29 @@ import PingController from '../../controllers/PingController'
 import client, {activityChannel} from '../../client'
 import {Eddie} from "../../data/index"
 import config from "../../config"
+import {isBot} from '../../utils/utils'
 
 const prefix = config.prefix;
 
 export default function messageHandler (message) {
     let input = message.content.toLowerCase();
+    if(!isBot(message.author)) {
 
-    //COMMANDS
-    if (message.content.startsWith(prefix)) {
-        switch(input){
-            case ':help':
-                message.channel.send(`\`\`\`Welcome to the Help command.
+        //COMMANDS
+        if (message.content.startsWith(prefix)) {
+            switch (input) {
+                case ':help':
+                    message.channel.send(`\`\`\`Welcome to the Help command.
 Type 'ping' to get ponged
 Type 'NOICE' to being NOICED
 Type 'classic eddie' to get a classic fact about eddie
 Activity is logged in #${activityChannel.name}
 \`\`\``);
-                break;
+                    break;
+            }
+            return
         }
-        return
-    }
 
-    if(!message.author.bot) {
         if (input.startsWith('ping')) {
             PingController.ping(message.channel)
         }
