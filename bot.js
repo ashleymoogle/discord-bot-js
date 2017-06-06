@@ -1,6 +1,6 @@
-System.import('./client').then((Client) => {
+import('./client').then((Client) => {
     const client = Client.default
-    System.import('./routing/routing').then((routing) => {
+    import('./routing/routing').then((routing) => {
         const Routing = routing.default
         client.on('ready', () => {
             console.log('I am ready!');

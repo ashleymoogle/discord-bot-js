@@ -11,11 +11,12 @@ let activityChannel = {};
 
 let stats;
 
+
 //CREATE OR USE CONF FILE
 try {
     stats = fs.statSync('./config.js');
     console.log("Config file found.");
-    System.import('./config').then((config) => {
+    import('./config').then((config) => {
         moment.locale(config.default.locale)
         client.login(config.default.botToken).then(() => {
             guild = client.guilds.get(config.default.guildId);
@@ -28,7 +29,7 @@ catch (e) {
     fs.copy('./config.example.js', './config.js')
         .then((c) => {
             console.log('Config created!')
-            System.import('./config').then((config) => {
+            import('./config').then((config) => {
                 moment.locale(config.default.locale)
                 client.login(config.default.botToken).then(() => {
                     guild = client.guilds.get(config.default.guildId);
