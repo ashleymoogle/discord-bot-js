@@ -13,7 +13,7 @@ let guild, activityChannel, textChannels;
 //CREATE OR USE CONF FILE
 (async () => {
     try {
-        fs.stat('./config.js');
+        await fs.stat('./config.js');
         console.log("Config file found.");
     }
     catch (e) {
