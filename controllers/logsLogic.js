@@ -6,7 +6,7 @@ export default function logsLogic(client) {
     const activityChannel = guild.channels.get(config.channelActivityId);
     
     const textChannels = guild.channels.reduce((acc, chan) => {
-        chan.type === 'text') ? acc.push(chan) : null;
+        chan.type === 'text' ? acc.push(chan) : null;
         return acc
     }, []);
     
@@ -16,5 +16,6 @@ export default function logsLogic(client) {
     textChannels.forEach((chan) => {
         fs.ensureFileSync(`${dir}/${guild.name}/${chan.name}.md`);
     });
+    
     return {guild,  activityChannel, textChannels}
 }
