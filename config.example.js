@@ -5,7 +5,7 @@ export default {
     prefix:":",
     locale:'en',
     configPath:'./config.js',
-    physicalLogs:false,
+    physicalLogs:true,
     logsPath:'./logs/',
     logBot: true,
     debug:false,

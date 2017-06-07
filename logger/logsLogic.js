@@ -2,6 +2,7 @@ import fs from 'fs-extra'
 import config from '../config'
 
 export default function logsLogic(client) {
+    //console.log(client)
     let guild = client.guilds.get(config.guildId);
     let activityChannel = guild.channels.get(config.channelActivityId);
     let textChannels = guild.channels.reduce((acc, chan) => {

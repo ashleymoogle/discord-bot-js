@@ -3,10 +3,19 @@ import client, {activityChannel} from '../../client'
 import {Eddie} from "../../data/index"
 import config from "../../config"
 import {isBot} from '../../utils/utils'
+import Logger from '../../logger/Logger'
 
 const prefix = config.prefix;
 
 export default function messageHandler (message) {
+    //logs logic
+    if(config.physicalLogs) {
+        if((config.logBot && isBot(message.author)) || !isBot(message.author)) {
+            Logger.logMessageToMd(message)
+        }
+    }
+
+    //Bot logic
     let input = message.content.toLowerCase();
     if(!isBot(message.author)) {
 
