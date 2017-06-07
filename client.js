@@ -30,10 +30,7 @@ let guild, activityChannel, textChannels;
         const config = require('./config');
         moment.locale(config.default.locale);
         await client.login(config.default.botToken);
-        const {g, a, c} = logsLogic(client);
-        guild = g;
-        activityChannel = a;
-        textChannels = c;
+        ({guild, activityChannel, textChannels} = logsLogic(client));
     }
 })();
 
