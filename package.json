@@ -1,23 +1,53 @@
 {
+  "name": "discord-bot-logger",
+  "version": "0.0.1",
   "scripts": {
-    "start": "babel-node bot.js "
+    "startBot": "babel-node bot.js ",
+    "build": "webpack --progress",
+    "startServer": "webpack-dev-server --host 0.0.0.0"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "bufferutil": "^3.0.0",
     "discord.js": "^11.1.0",
+    "document-ready-promise": "^3.0.1",
     "erlpack": "hammerandchisel/erlpack",
     "fs-extra": "^3.0.1",
+    "i18next": "^8.4.2",
+    "i18next-xhr-backend": "^1.4.2",
+    "jquery": "^3.2.1",
     "libsodium": "^0.5.1",
     "libsodium-wrappers": "^0.5.1",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "node-opus": "^0.2.6",
     "opusscript": "^0.0.3",
+    "react": "^15.6.0",
+    "react-dom": "^15.6.0",
+    "react-i18next": "^4.1.2",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0",
     "sodium": "^2.0.1",
+    "toastr": "^2.1.2",
     "uws": "^0.14.5"
   },
   "devDependencies": {
+    "autoprefixer": "^7.1.1",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
-    "babel-preset-env": "^1.5.1"
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-react": "^6.24.1",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^2.1.2",
+    "html-loader": "^0.4.5",
+    "postcss-loader": "^2.0.5",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1",
+    "webpack-dev-server": "^2.4.5",
+    "webpack-merge": "^4.1.0"
   }
 }

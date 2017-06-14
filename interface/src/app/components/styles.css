@@ -1,0 +1,15 @@
+#mount{
+    font-weight:bold;
+    border-radius:5px;
+    display:flex;
+    flex:1;
+}
+
+:global .wrapper {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
