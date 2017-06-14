@@ -1,9 +1,10 @@
+import React from 'react'
 import { connect } from 'react-redux';
 
-import styles from './FirstContainer.css'
+import styles from './Home.css'
 import MenuNavTop from '../menus/MenuNavTop'
 
-class FirstContainer extends React.Component {
+class Home extends React.Component {
     constructor (props) {
         super(props)
     }
@@ -21,7 +22,7 @@ class FirstContainer extends React.Component {
                 </div>
                 <h2>HOME</h2>
                 <div>
-                    <h3 className={styles.title1}>COUNTER 1 : {counter}</h3>
+                    <h3 className={styles.title1}>Welcome : {counter}</h3>
                     <button onClick={() => onIncrement()}>+</button>
                     <button onClick={() => onDecrement()}>-</button>
                 </div>
@@ -52,4 +53,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FirstContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

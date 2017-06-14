@@ -11,7 +11,7 @@ exports.devServer = function (options) {
         },
         plugins: [
             new webpack.HotModuleReplacementPlugin({
-                multiStep: true
+                multiStep: false
             })
         ]
     }

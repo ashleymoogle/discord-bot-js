@@ -6,7 +6,7 @@ const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const TARGET = process.env.npm_lifecycle_event || 'build'
 
-const developmentConfig = require('./interface/webpack/development')
+const developmentConfig = require('./webpack/development')
 
 const commonChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
@@ -134,7 +134,8 @@ if (TARGET === 'build') {
 
 
 
-if ((TARGET === 'start') || (TARGET === undefined)) {
+if ((TARGET === 'startServer') || (TARGET === undefined)) {
+    console.log('start dev server')
     config = merge(common, {
         debug: true,
         plugins: [],

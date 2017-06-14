@@ -1,4 +1,5 @@
-import { Link, browserHistory } from 'react-router'
+import React from 'react'
+import { Link, browserHistory } from 'react-router-dom'
 import styles from "./MenuNavTop.css"
 
 class MenuNavTop extends React.Component {
