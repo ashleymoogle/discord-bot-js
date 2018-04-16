@@ -4,7 +4,8 @@ import config from '../config'
 export default function logsLogic(client) {
     const guild = client.guilds.get(config.guildId);
     const activityChannel = guild.channels.get(config.channelActivityId);
-    
+    const defaultChannel = guild.channels.get(config.defaultChannelId);
+
     const textChannels = guild.channels.reduce((acc, chan) => {
         chan.type === 'text' ? acc.push(chan) : null;
         return acc
@@ -17,5 +18,5 @@ export default function logsLogic(client) {
         fs.ensureFileSync(`${dir}/${guild.name}/${chan.name}.md`);
     });
     
-    return {guild,  activityChannel, textChannels}
+    return {guild,  defaultChannel, activityChannel, textChannels}
 }

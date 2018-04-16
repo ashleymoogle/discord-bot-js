@@ -12,6 +12,10 @@ export default {
         "Fin de ton abonnement wow -> vous venez raid ?",
         "Accuser les autres d'être salés parce que t'es salé",
         "Être salé",
-        "Essayer de pécho la guitariste du bar en étant bourré"
+        "Essayer de pécho la guitariste du bar en étant bourré",
+        "PUBG",
+        "'Vous venez jouer a PUBG?'",
+        "Se casser sans rien dire",
+        "Etre avant-gardiste"
     ]
 }

@@ -1,37 +1,37 @@
 import moment from 'moment'
-import {activityChannel} from '../../client'
+import {defaultChannel, activityChannel} from '../../client'
 import config from '../../config'
 import {isBot} from '../../utils/utils'
 
+let lastGame = '';
+
 export default function presenceHandler (oldMember, newMember) {
-    if((config.logBot && isBot(newMember)) || !isBot(newMember)) {
+    if(((config.logBot && isBot(newMember)) || !isBot(newMember)) && activityChannel) { //(Bot is allow to talk || user is not a bot) && there is an activitychannel set
         switch (newMember.presence.status) {
             case 'online':
                 if (oldMember.presence.status === 'offline') {
-                    if(!config.debug) newMember.guild.defaultChannel.send(`Hello, ${newMember}!`);
-                    if (!activityChannel) return;
+                    if(!config.debug) defaultChannel.send(`Hello, ${newMember}!`);
                     activityChannel.send(`[${moment().format('YYYY-MM-DD - HH:mm:ss')}] ${newMember.user.username} is **online**`);
                 }
                 break;
             case 'offline':
-                if (!activityChannel) return;
                 activityChannel.send(`[${moment().format('YYYY-MM-DD - HH:mm:ss')}] ${newMember.user.username} is **offline**`);
                 break;
             case 'idle':
-                if (!activityChannel) return;
                 activityChannel.send(`[${moment().format('YYYY-MM-DD - HH:mm:ss')}] ${newMember.user.username} is **idle**`);
                 break;
             case 'dnd':
-                if (!activityChannel) return;
                 activityChannel.send(`[${moment().format('YYYY-MM-DD - HH:mm:ss')}] ${newMember.user.username} is **dnd**`);
                 break;
         }
 
         if ((oldMember.presence.game === null && newMember.presence.game !== null) || (oldMember.presence.game !== null && newMember.presence.game !== null)) {
-            if (!activityChannel) return;
-            activityChannel.send(`[${moment().format('YYYY-MM-DD - HH:mm:ss')}] ${newMember.user.username} started playing \`\`\`${newMember.presence.game.name}\`\`\``);
+            let msg = `${newMember.user.username} started playing \`\`\`${newMember.presence.game.name}\`\`\``;
+            if (lastGame !== msg) {
+                lastGame = msg;
+                activityChannel.send(`[${moment().format('YYYY-MM-DD - HH:mm:ss')}] ${msg}`);
+            }
         } else if ((oldMember.presence.game !== null && newMember.presence.game === null)) {
-            if (!activityChannel) return;
             activityChannel.send(`[${moment().format('YYYY-MM-DD - HH:mm:ss')}] ${newMember.user.username} has stopped playing \`\`\`${oldMember.presence.game.name}\`\`\``);
         }
     }

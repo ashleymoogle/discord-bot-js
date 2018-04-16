@@ -1,12 +1,14 @@
-const webpack = require('webpack')
-const path = require('path')
-const merge = require('webpack-merge')
+const webpack = require('webpack');
+const path = require('path');
+const merge = require('webpack-merge');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const autoprefixer = require('autoprefixer');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const TARGET = process.env.npm_lifecycle_event || 'build'
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const developmentConfig = require('./webpack/development')
+const TARGET = process.env.npm_lifecycle_event || 'build';
+
+const developmentConfig = require('./webpack/development');
 
 const commonChunkPlugin = new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
@@ -102,30 +104,39 @@ if (TARGET === 'build') {
     config = merge.smart(common, {
         plugins: [
             new webpack.DefinePlugin({
-              'process.env': {
-                'NODE_ENV': JSON.stringify('production')
-              }
+                PRODUCTION: JSON.stringify(true),
+                'process.env': {
+                  'NODE_ENV': JSON.stringify('production')
+                }
             }),
             new webpack.LoaderOptionsPlugin({
                 minimize: true,
                 debug: false
             }),
-            new webpack.optimize.UglifyJsPlugin({
-                compress: {
-                    warnings: false,
-                    screw_ie8: true,
-                    conditionals: true,
-                    unused: true,
-                    comparisons: true,
-                    sequences: true,
-                    dead_code: true,
-                    evaluate: true,
-                    if_return: true,
-                    join_vars: true,
-                },
-                output: {
-                    comments: false
-                },
+            new UglifyJSPlugin({
+                uglifyOptions: {
+                    compress: {
+                        warnings: true,
+                        screw_ie8: true,
+                        conditionals: true,
+                        unused: true,
+                        comparisons: true,
+                        sequences: true,
+                        dead_code: true,
+                        evaluate: true,
+                        if_return: true,
+                        join_vars: true,
+                    },
+                    output: {
+                        comments: false
+                    }
+                }
+            }),
+            new OptimizeCssAssetsPlugin({
+                assetNameRegExp: /\.css$/g,
+                cssProcessor: require('cssnano'),
+                cssProcessorOptions: { discardComments: { removeAll: true } },
+                canPrint: true
             }),
             commonChunkPlugin
         ]
@@ -138,9 +149,16 @@ if ((TARGET === 'startServer') || (TARGET === undefined)) {
     console.log('start dev server')
     config = merge(common, {
         debug: true,
-        plugins: [],
+        plugins: [
+            new webpack.DefinePlugin({
+                PRODUCTION: JSON.stringify(true),
+                'process.env': {
+                    'NODE_ENV': JSON.stringify('production')
+                }
+            })
+        ],
         devtool: 'eval'
-    })
+    });
 
     config = merge(common, developmentConfig.devServer())
 }

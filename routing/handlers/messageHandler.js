@@ -48,7 +48,7 @@ Activity is logged in #${activityChannel.name}
 
         if (input.includes('classic eddie')) {
             //find user
-            let eddie = client.users.find('username', 'Saburou');
+            let eddie = client.users.find('id', '185313995069194240');
             let factIndex = Math.floor(Math.random() * Eddie.classic.length);
 
             message.channel.send

@@ -7,7 +7,7 @@ import logsLogic from './logger/logsLogic'
 
 const client = new Discord.Client();
 
-let guild, activityChannel, textChannels;
+let guild, defaultChannel, activityChannel, textChannels;
 
 
 //CREATE OR USE CONF FILE
@@ -30,9 +30,9 @@ let guild, activityChannel, textChannels;
         const config = require('./config');
         moment.locale(config.default.locale);
         await client.login(config.default.botToken);
-        ({guild, activityChannel, textChannels} = logsLogic(client));
+        ({guild, defaultChannel, activityChannel, textChannels} = logsLogic(client));
     }
 })();
 
 export default client
-export {guild, activityChannel, textChannels}
+export {guild, defaultChannel, activityChannel, textChannels}
