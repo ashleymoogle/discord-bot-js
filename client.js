@@ -9,7 +9,6 @@ const client = new Discord.Client();
 
 let guild, defaultChannel, activityChannel, textChannels;
 
-
 //CREATE OR USE CONF FILE
 (async () => {
     try {
